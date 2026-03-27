@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Fatih</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .sec { display: none; } .sec.active { display: block; animation: fade 0.5s; }
+        @keyframes fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; } }
+        .card { background: white; border-radius: 1rem; padding: 2rem 1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); position: relative; border: 2px solid #ddd; min-height: 400px; }
+        .adm { display: none; } .adm.show { display: block; }
+        .hide-scroll::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-[#1c3a27] text-slate-800 min-h-screen pb-20">
+
+    <header class="pt-8 pb-4 flex justify-center gap-2 sticky top-0 z-50 overflow-x-auto px-4 hide-scroll">
+        <button onclick="tab('p')" id="b-p" class="w-16 h-16 bg-white border-4 border-yellow-400 rounded-full flex flex-col items-center justify-center shrink-0 scale-110 shadow-lg transition-all">
+            <span class="text-xl">♠</span><b class="text-[8px]">PROFIL</b>
+        </button>
+        <button onclick="tab('r')" id="b-r" class="w-16 h-16 bg-slate-800 border-4 border-slate-600 text-white rounded-full flex flex-col items-center justify-center shrink-0 shadow-lg transition-all">
+            <span class="text-xl text-red-500">♥</span><b class="text-[8px]">RIWAYAT</b>
+        </button>
+        <button onclick="tab('k')" id="b-k" class="w-16 h-16 bg-slate-800 border-4 border-slate-600 text-white rounded-full flex flex-col items-center justify-center shrink-0 shadow-lg transition-all">
+            <span class="text-xl text-red-500">♦</span><b class="text-[8px]">KARYA</b>
+        </button>
+        <button onclick="tab('a')" id="b-a" class="w-16 h-16 bg-slate-800 border-4 border-slate-600 text-white rounded-full flex flex-col items-center justify-center shrink-0 shadow-lg transition-all">
+            <span class="text-xl text-slate-300">♣</span><b class="text-[8px]">ALBUM</b>
+        </button>
+    </header>
+
+    <main class="max-w-xl mx-auto px-4 mt-4">
+        <div id="p" class="sec active">
+            <div class="card text-center">
+                <div class="relative w-32 h-32 mx-auto mb-4">
+                    <div onclick="clickImg()" class="w-full h-full rounded-full border-4 border-black overflow-hidden bg-slate-100 flex items-center justify-center cursor-pointer shadow-md">
+                        <img id="p-img" class="w-full h-full object-cover hidden">
+                        <i id="p-ico" class="fas fa-camera text-3xl text-slate-300"></i>
+                    </div>
+                    <input type="file" id="f-profil" class="hidden" accept="image/*" onchange="uploadFoto(this)">
+                    <div class="adm absolute -bottom-2 -right-2 bg-yellow-400 w-8 h-8 rounded-full flex items-center justify-center border-2 border-white text-[10px]"><i class="fas fa-pen"></i></div>
+                </div>
+                <h1 class="text-2xl font-bold">Mohammad Fatih Shaleh</h1>
+                <p class="text-slate-600 mt-2 text-sm leading-relaxed">Mahasiswa aktif Manajemen Pendidikan, dan aktif kedalam organisasi intra kampus dan ekstra kampus</p>
+            </div>
+        </div>
+
+        <div id="r" class="sec">
+            <div class="card">
+                <div class="flex justify-between border-b pb-2 mb-4">
+                    <h2 class="font-bold text-red-700">♥ RIWAYAT</h2>
+                    <button onclick="addR()" class="adm bg-red-700 text-white px-2 py-1 rounded text-[10px]">+ TAMBAH</button>
+                </div>
+                <div id="r-list" class="space-y-4"></div>
+            </div>
+        </div>
+
+        <div id="k" class="sec">
+            <div class="card">
+                <div class="flex justify-between border-b pb-2 mb-4">
+                    <h2 class="font-bold text-red-700">♦ KARYA</h2>
+                    <button onclick="openM('k')" class="adm bg-red-700 text-white px-2 py-1 rounded text-[10px]">+ BARU</button>
+                </div>
+                <div id="k-list" class="grid gap-4"></div>
+            </div>
+        </div>
+
+        <div id="a" class="sec">
+            <div class="card">
+                <div class="flex justify-between border-b pb-2 mb-4">
+                    <h2 class="font-bold">♣ ALBUM</h2>
+                    <button onclick="openM('a')" class="adm bg-slate-900 text-white px-2 py-1 rounded text-[10px]">+ FOTO</button>
+                </div>
+                <div id="a-list" class="grid grid-cols-2 gap-2"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="mt-10 text-center">
+        <button onclick="log()" id="l-txt" class="text-white/20 text-[10px] underline">AKSES ADMIN</button>
+    </footer>
+
+    <div id="modal" class="fixed inset-0 bg-black/90 hidden z-[100] p-6 flex items-center justify-center">
+        <div class="bg-white p-6 rounded-2xl w-full max-w-sm border-4 border-slate-900">
+            <h3 class="font-bold mb-4">Tambah Data</h3>
+            <div class="space-y-3">
+                <div id="loading-txt" class="hidden text-center text-blue-600 font-bold text-xs animate-pulse">Mengompres Foto...</div>
+                <input type="file" id="m-file" class="w-full text-xs" accept="image/*">
+                <input type="text" id="m-link" placeholder="Link/Tautan (Opsional)" class="border w-full p-2 rounded text-sm outline-none">
+                <input type="text" id="m-head" placeholder="Judul" class="border w-full p-2 rounded text-sm outline-none">
+                <button onclick="processSave()" id="save-btn" class="w-full bg-slate-900 text-white py-2 rounded-lg font-bold">SIMPAN</button>
+                <button onclick="closeM()" class="w-full text-xs text-slate-400 mt-2">BATAL</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let db = { 
+            f: localStorage.getItem('f_img') || null,
+            r: JSON.parse(localStorage.getItem('f_r')) || [],
+            k: JSON.parse(localStorage.getItem('f_k')) || [],
+            a: JSON.parse(localStorage.getItem('f_a')) || []
+        };
+        let cur = '';
+
+        // FUNGSI AUTO COMPRESS FOTO
+        function compress(file, callback) {
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                let img = new Image();
+                img.onload = function() {
+                    let canvas = document.createElement('canvas');
+                    let ctx = canvas.getContext('2d');
+                    let maxW = 800; // Lebar maksimal 800px
+                    let scale = maxW / img.width;
+                    if (img.width > maxW) {
+                        canvas.width = maxW;
+                        canvas.height = img.height * scale;
+                    } else {
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+                    }
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    callback(canvas.toDataURL('image/jpeg', 0.7)); // Kualitas 70%
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function tab(id) {
+            document.querySelectorAll('.sec').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.querySelectorAll('header button').forEach(b => {
+                b.className = "w-16 h-16 bg-slate-800 border-4 border-slate-600 text-white rounded-full flex flex-col items-center justify-center shrink-0 shadow-lg";
+            });
+            document.getElementById('b-'+id).className = "w-16 h-16 bg-white border-4 border-yellow-400 text-black rounded-full flex flex-col items-center justify-center shrink-0 shadow-lg scale-110";
+        }
+
+        function log() {
+            if(prompt("Pass:") === "Fatih_123") {
+                document.querySelectorAll('.adm').forEach(e => e.classList.add('show'));
+                document.getElementById('l-txt').innerText = "LOGOUT ADMIN";
+                document.getElementById('l-txt').onclick = () => location.reload();
+            }
+        }
+
+        function clickImg() { if(document.querySelectorAll('.adm.show').length > 0) document.getElementById('f-profil').click(); }
+
+        function uploadFoto(input) {
+            if(!input.files[0]) return;
+            compress(input.files[0], (res) => {
+                db.f = res;
+                localStorage.setItem('f_img', res);
+                render();
+            });
+        }
+
+        function addR() {
+            let t = prompt("Tahun (Misal: 2022-2023):");
+            let i = prompt("Instansi/Organisasi:");
+            if(t && i) { db.r.push({t, i}); saveDB(); }
+        }
+
+        function openM(t) { cur = t; document.getElementById('modal').classList.remove('hidden'); }
+        function closeM() { document.getElementById('modal').classList.add('hidden'); }
+
+        function processSave() {
+            let file = document.getElementById('m-file').files[0];
+            let l = document.getElementById('m-link').value;
+            let h = document.getElementById('m-head').value;
+            
+            if(!file && !l && !h) return alert("Isi salah satu!");
+            
+            document.getElementById('save-btn').disabled = true;
+            document.getElementById('loading-txt').classList.remove('hidden');
+
+            if(file) {
+                compress(file, (res) => {
+                    db[cur].unshift({f:res, l, h});
+                    saveDB();
+                });
+            } else {
+                db[cur].unshift({f:null, l, h});
+                saveDB();
+            }
+        }
+
+        // FUNGSI HAPUS DATA
+        function del(type, index) {
+            if(confirm("Hapus data ini?")) {
+                db[type].splice(index, 1);
+                saveDB();
+            }
+        }
+
+        function saveDB() {
+            localStorage.setItem('f_r', JSON.stringify(db.r));
+            localStorage.setItem('f_k', JSON.stringify(db.k));
+            localStorage.setItem('f_a', JSON.stringify(db.a));
+            location.reload();
+        }
+
+        function render() {
+            // Render Profil
+            if(db.f) { document.getElementById('p-img').src = db.f; document.getElementById('p-img').classList.remove('hidden'); document.getElementById('p-ico').classList.add('hidden'); }
+            
+            // Render Riwayat
+            document.getElementById('r-list').innerHTML = '';
+            db.r.forEach((x, i) => {
+                document.getElementById('r-list').innerHTML += `<div class="relative border-l-4 border-red-700 pl-3"><b class="text-sm block">${x.i}</b><span class="text-[10px] text-slate-400">${x.t}</span><button onclick="del('r', ${i})" class="adm absolute top-0 right-0 text-red-300 text-xs"><i class="fas fa-trash"></i></button></div>`;
+            });
+
+            // Render Karya
+            document.getElementById('k-list').innerHTML = '';
+            db.k.forEach((x, i) => {
+                document.getElementById('k-list').innerHTML += `<div class="relative border p-3 rounded-xl text-sm shadow-sm">${x.f ? `<img src="${x.f}" class="w-full h-28 object-cover rounded mb-2">` : ''}<b>${x.h}</b>${x.l ? `<br><a href="${x.l}" target="_blank" class="text-blue-500 text-[10px] underline">Lihat Link</a>` : ''}<button onclick="del('k', ${i})" class="adm absolute top-2 right-2 bg-red-100 text-red-600 w-6 h-6 rounded-full flex items-center justify-center text-[10px] shadow"><i class="fas fa-trash"></i></button></div>`;
+            });
+
+            // Render Album
+            document.getElementById('a-list').innerHTML = '';
+            db.a.forEach((x, i) => {
+                document.getElementById('a-list').innerHTML += `<div class="relative aspect-square border-2 border-white rounded-lg overflow-hidden shadow-md bg-slate-50">${x.f ? `<img src="${x.f}" class="w-full h-full object-cover">` : `<div class="p-2 text-[8px] flex items-center h-full text-center">${x.h}</div>`}<button onclick="del('a', ${i})" class="adm absolute top-1 right-1 bg-black/50 text-white w-5 h-5 rounded-full flex items-center justify-center text-[8px] shadow-lg"><i class="fas fa-times"></i></button></div>`;
+            });
+        }
+        render();
+    </script>
+</body>
+                          </html>
+  
