@@ -1,18 +1,12 @@
 {
-  "name": "portfolio-kegiatan",
-  "version": "1.0.0",
+  "name": "portfolio-kegiatan-vercel",
+  "version": "1.1.0",
   "private": true,
-  "description": "Website portofolio kegiatan pribadi dengan panel admin sederhana",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
-  "engines": { "node": ">=18" },
+  "type": "module",
+  "description": "Website portofolio kegiatan dengan dashboard admin untuk Vercel",
+  "engines": { "node": ">=20" },
   "dependencies": {
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "express-session": "^1.18.1",
-    "helmet": "^8.0.0",
+    "@vercel/blob": "^2.8.2",
     "multer": "^2.0.2"
   }
 }

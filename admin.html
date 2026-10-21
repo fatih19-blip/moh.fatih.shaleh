@@ -36,9 +36,20 @@
     const setAlert = (element, message, type='success') => { element.textContent = message; element.className = `alert ${type} show`; };
     const clearAlert = element => { element.textContent=''; element.className='alert'; };
     async function api(url, options={}) {
-      const response = await fetch(url, { credentials:'same-origin', ...options, headers: { ...(options.body instanceof FormData ? {} : {'Content-Type':'application/json'}), ...(options.headers||{}) } });
-      const body = await response.json().catch(() => ({}));
-      if (!response.ok) { if (response.status === 401 && url !== '/api/login') showLogin(); throw new Error(body.error || 'Permintaan gagal.'); }
+      let response;
+      try {
+        response = await fetch(url, { credentials:'same-origin', ...options, headers: { ...(options.body instanceof FormData ? {} : {'Content-Type':'application/json'}), ...(options.headers||{}) } });
+      } catch (_) {
+        throw new Error('Tidak bisa menghubungi API. Pastikan folder api/ sudah diunggah dan deployment Vercel sudah selesai.');
+      }
+      const raw = await response.text();
+      let body = {};
+      try { body = raw ? JSON.parse(raw) : {}; } catch (_) {}
+      if (!response.ok) {
+        if (response.status === 401 && url !== '/api/login') showLogin();
+        const message = body.error || (response.status === 404 ? 'Endpoint API belum ditemukan. Unggah folder api/ lalu tunggu deployment Vercel selesai.' : `Server gagal merespons (HTTP ${response.status}). Periksa konfigurasi project Vercel.`);
+        throw new Error(message);
+      }
       return body;
     }
     async function loadData() { data = await api('/api/portfolio'); }
@@ -52,7 +63,7 @@
     }
     function renderProfile() {
       const p = data.profile || {};
-      $('panelContent').innerHTML = `<form id="profileForm"><div class="profile-grid">${profileFields.map(f => fieldHTML(f,p[f[0]])).join('')}<div class="field full"><label for="profileUpload">Unggah foto profil</label><div class="photo-tools"><input id="profileUpload" type="file" accept="image/jpeg,image/png,image/webp,image/gif"><button class="btn btn-light" id="uploadProfile" type="button">Unggah foto</button></div><small>JPG, PNG, WEBP, atau GIF; maksimal 8 MB. Foto akan disimpan pada server.</small></div></div><div class="status-line" id="formStatus" role="status"></div><div class="form-actions"><button class="btn btn-primary" type="submit">Simpan profil</button></div></form>`;
+      $('panelContent').innerHTML = `<form id="profileForm"><div class="profile-grid">${profileFields.map(f => fieldHTML(f,p[f[0]])).join('')}<div class="field full"><label for="profileUpload">Unggah foto profil</label><div class="photo-tools"><input id="profileUpload" type="file" accept="image/jpeg,image/png,image/webp,image/gif"><button class="btn btn-light" id="uploadProfile" type="button">Unggah foto</button></div><small>JPG, PNG, WEBP, atau GIF; maksimal 3 MB. Foto akan disimpan ke penyimpanan Vercel.</small></div></div><div class="status-line" id="formStatus" role="status"></div><div class="form-actions"><button class="btn btn-primary" type="submit">Simpan profil</button></div></form>`;
       $('profileForm').addEventListener('submit', async e => { e.preventDefault(); const form = new FormData(e.currentTarget); for (const [key] of profileFields) data.profile[key] = String(form.get(key) || '').trim(); await persist('Profil berhasil diperbarui.'); });
       $('uploadProfile').addEventListener('click', async () => uploadInto($('profileUpload'), 'photo'));
     }
@@ -65,7 +76,7 @@
       }).join('') : '<div class="empty">Belum ada data. Tambahkan melalui formulir di samping.</div>';
       const current = editingId ? items.find(x => x.id === editingId) : {};
       const fields = def.fields.map(f => fieldHTML(f,current?.[f[0]])).join('');
-      $('panelContent').innerHTML = `<div class="item-layout"><div><div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px"><strong style="font-size:12px">Daftar ${escapeHTML(def.title.toLowerCase())}</strong><span class="muted small">${items.length} item</span></div><div class="items-list">${listHTML}</div></div><div class="editor-box"><h3 id="editorTitle">${editingId?'Edit':'Tambah'} ${escapeHTML(def.singular)}</h3><form id="itemForm"><div class="profile-grid" style="grid-template-columns:1fr">${fields}<div class="field"><label for="itemUpload">Unggah gambar (opsional)</label><div class="photo-tools"><input id="itemUpload" type="file" accept="image/jpeg,image/png,image/webp,image/gif"><button class="btn btn-light" id="uploadItem" type="button">Unggah</button></div><small>Gunakan untuk gambar kegiatan atau galeri. Maks. 8 MB.</small></div></div><div class="status-line" id="formStatus" role="status"></div><div class="form-actions"><button class="btn btn-light" id="resetItem" type="button">Batal</button><button class="btn btn-primary" type="submit">${editingId?'Simpan perubahan':'Tambah item'}</button></div></form></div></div>`;
+      $('panelContent').innerHTML = `<div class="item-layout"><div><div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px"><strong style="font-size:12px">Daftar ${escapeHTML(def.title.toLowerCase())}</strong><span class="muted small">${items.length} item</span></div><div class="items-list">${listHTML}</div></div><div class="editor-box"><h3 id="editorTitle">${editingId?'Edit':'Tambah'} ${escapeHTML(def.singular)}</h3><form id="itemForm"><div class="profile-grid" style="grid-template-columns:1fr">${fields}<div class="field"><label for="itemUpload">Unggah gambar (opsional)</label><div class="photo-tools"><input id="itemUpload" type="file" accept="image/jpeg,image/png,image/webp,image/gif"><button class="btn btn-light" id="uploadItem" type="button">Unggah</button></div><small>Gunakan untuk gambar kegiatan atau galeri. Maks. 3 MB (batas upload Vercel).</small></div></div><div class="status-line" id="formStatus" role="status"></div><div class="form-actions"><button class="btn btn-light" id="resetItem" type="button">Batal</button><button class="btn btn-primary" type="submit">${editingId?'Simpan perubahan':'Tambah item'}</button></div></form></div></div>`;
       $('itemForm').addEventListener('submit', async e => {
         e.preventDefault(); const fd = new FormData(e.currentTarget); const item = {};
         def.fields.forEach(f => item[f[0]] = String(fd.get(f[0]) || '').trim());
