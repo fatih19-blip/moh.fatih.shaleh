@@ -1,0 +1,8 @@
+{
+  "name": "portofolio-pribadi-fatih",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Portofolio pribadi dengan admin password, data dan foto publik tersimpan di GitHub",
+  "engines": { "node": ">=20" }
+}

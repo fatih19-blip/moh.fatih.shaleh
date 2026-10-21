@@ -1,0 +1,14 @@
+PORTOFOLIO FINAL — ADMIN HANYA MEMAKAI PASSWORD
+
+1. Ekstrak ZIP.
+2. Unggah seluruh isinya ke root repository GitHub; folder api/ jangan tertinggal.
+3. Di Vercel > Settings > Environment Variables, atur:
+   ADMIN_PASSWORD = Fatih123
+   SESSION_SECRET = teks acak rahasia min. 32 karakter
+   GITHUB_TOKEN = token GitHub fine-grained (disimpan di Vercel, bukan di website)
+4. Token harus memilih repository moh.fatih.shaleh saja dan izin Repository permissions > Contents > Read and write.
+5. Redeploy Vercel.
+6. Buka website, klik "kelola portofolio" di bagian bawah, lalu login hanya dengan password.
+7. Upload foto (maks. 2 MB) atau tempel link gambar publik HTTPS. Data dan foto disimpan di GitHub.
+
+Token GitHub tidak pernah dimasukkan ke halaman admin dan jangan dikirim ke orang lain.
