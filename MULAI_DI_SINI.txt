@@ -1,0 +1,13 @@
+PORTOFOLIO KEGIATAN — PAKET UPLOAD GITHUB
+
+File penting sudah berada langsung di folder ini (tanpa folder public/data di dalamnya).
+
+UPLOAD KE GITHUB:
+1. Buat repository baru.
+2. Klik Add file > Upload files.
+3. Seret semua isi folder ini ke area upload. Jangan upload file .env jika ada.
+4. Klik Commit changes.
+
+CATATAN: GitHub hanya menyimpan kode. Agar halaman admin dan penyimpanan perubahan berjalan, deploy/run aplikasi ini di server Node.js.
+
+Untuk menjalankan di komputer/server: baca README.md. Atur password di file .env (salinan .env.example), dan jangan pernah unggah .env ke GitHub.
