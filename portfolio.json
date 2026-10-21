@@ -1,58 +1,25 @@
 {
   "profile": {
-    "name": "Nama Kamu",
-    "headline": "Mahasiswa • Aktivis Organisasi • Pembelajar",
+    "name": "Mohammad Fatih Shaleh",
+    "role": "Mahasiswa | Aktivis Organisasi | Pembelajar",
+    "tagline": "Mendokumentasikan proses, pengalaman, dan kontribusi dalam setiap perjalanan.",
+    "about": "Saya tertarik pada pengembangan diri, pendidikan, organisasi, dan kegiatan sosial. Website ini menjadi ruang untuk mendokumentasikan kegiatan, pengalaman, pendidikan, serta karya yang pernah saya jalani.",
+    "email": "",
+    "whatsapp": "",
     "location": "Indonesia",
-    "bio": "Saya percaya bahwa pengalaman, kolaborasi, dan kemauan untuk terus belajar membentuk proses bertumbuh. Website ini menjadi ruang dokumentasi perjalanan, kegiatan, dan kontribusi saya.",
-    "email": "emailkamu@example.com",
-    "whatsapp": "6281234567890",
-    "instagram": "https://instagram.com/",
-    "photo": ""
+    "photoUrl": ""
   },
   "activities": [
     {
-      "id": "activity-example-1",
-      "title": "Contoh Kegiatan Organisasi",
-      "date": "2026-01-15",
+      "title": "Dokumentasi Kegiatan Organisasi",
+      "date": "2026",
       "category": "Organisasi",
-      "description": "Ganti bagian ini dengan cerita singkat mengenai kegiatan, peran, dan hal yang dipelajari.",
-      "image": ""
+      "description": "Tambahkan cerita singkat tentang kegiatan, peran yang dijalankan, dan hal yang dipelajari.",
+      "imageUrl": ""
     }
   ],
-  "experience": [
-    {
-      "id": "experience-example-1",
-      "role": "Panitia Kegiatan",
-      "institution": "Nama Kegiatan / Instansi",
-      "period": "2025 — 2026",
-      "description": "Tuliskan tanggung jawab, kontribusi, atau hasil yang berhasil dicapai."
-    }
-  ],
-  "education": [
-    {
-      "id": "education-example-1",
-      "institution": "Nama Perguruan Tinggi",
-      "degree": "Program Studi / Jenjang",
-      "period": "2024 — sekarang",
-      "description": "Tambahkan fokus studi, minat, atau pencapaian yang relevan."
-    }
-  ],
-  "organizations": [
-    {
-      "id": "organization-example-1",
-      "position": "Anggota / Pengurus",
-      "organization": "Nama Organisasi",
-      "period": "2025 — sekarang",
-      "description": "Jelaskan bidang, posisi, dan kontribusi secara ringkas."
-    }
-  ],
-  "gallery": [
-    {
-      "id": "gallery-example-1",
-      "title": "Dokumentasi Kegiatan",
-      "date": "2026-01-15",
-      "image": "",
-      "caption": "Tambahkan foto kegiatan melalui halaman admin."
-    }
-  ]
+  "experience": [],
+  "education": [],
+  "organizations": [],
+  "gallery": []
 }
