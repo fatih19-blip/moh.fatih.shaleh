@@ -1,0 +1,13 @@
+{
+  "name": "portfolio-kegiatan-vercel",
+  "version": "1.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Website portofolio kegiatan dengan dashboard admin untuk Vercel",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@vercel/blob": "^2.8.2"
+  }
+}

@@ -1,0 +1,10 @@
+MULAI DI SINI — PORTOFOLIO SIMPAN LANGSUNG
+
+1. Upload semua isi paket ini ke ROOT repository GitHub yang tersambung ke Vercel. Folder api/ jangan ditinggal.
+2. Vercel → Settings → Environment Variables:
+   ADMIN_PASSWORD = Fatih123
+   SESSION_SECRET = string acak rahasia minimal 32 karakter.
+3. Vercel → Storage → Create Database → Blob → Public → Create + Connect ke project.
+4. Redeploy project Vercel.
+5. Buka /api/health. Tiga nilai konfigurasi harus true.
+6. Buka halaman utama, gulir ke footer, klik kelola portofolio, login, edit, lalu simpan. Tidak perlu upload ke GitHub lagi untuk tiap perubahan konten.

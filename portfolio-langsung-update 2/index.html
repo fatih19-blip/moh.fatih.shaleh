@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b3d">
+  <meta name="description" content="Portofolio pribadi, kegiatan, pengalaman, pendidikan, organisasi, dan galeri kegiatan.">
+  <title>Portofolio Pribadi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="top-glow" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="#beranda" aria-label="Kembali ke beranda"><span class="brand-mark">P<span>.</span></span><span class="brand-copy">PORTOFOLIO<span>PERSONAL JOURNEY</span></span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Buka navigasi" aria-expanded="false">☰</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#beranda" class="active">Beranda</a><a href="#kegiatan">Kegiatan</a><a href="#pengalaman">Pengalaman</a><a href="#pendidikan">Pendidikan</a><a href="#organisasi">Organisasi</a><a href="#galeri">Galeri</a>
+    </nav>
+    <a class="nav-contact" id="navContact" href="#kontak">Hubungi saya <span>↗</span></a>
+  </header>
+  <main>
+    <section class="hero section-wrap" id="beranda">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="pulse-dot"></span> PORTOFOLIO & JEJAK PERJALANAN</div>
+        <p class="hero-kicker">Halo, saya</p>
+        <h1 id="profileName">Nama Kamu<span class="name-dot">.</span></h1>
+        <h2 id="profileHeadline">Mahasiswa • Aktivis Organisasi • Pembelajar</h2>
+        <p class="hero-description" id="profileBio">Perjalanan kecil, pengalaman bermakna, dan semangat untuk terus bertumbuh.</p>
+        <div class="hero-actions"><a href="#kegiatan" class="btn btn-primary">Jelajahi perjalanan <span>↓</span></a><a href="#kontak" class="btn btn-quiet">Mari terhubung <span>↗</span></a></div>
+        <div class="hero-footnote"><span class="location-pin">⌖</span><span id="profileLocation">Indonesia</span><span class="footnote-divider"></span><span>Terus belajar, terus bertumbuh.</span></div>
+      </div>
+      <div class="hero-visual">
+        <div class="visual-orbit orbit-one"></div><div class="visual-orbit orbit-two"></div>
+        <div class="profile-frame"><div class="profile-placeholder" id="profilePlaceholder"><span id="profileInitials">NK</span><small>YOUR STORY<br>STARTS HERE</small></div><img id="profilePhoto" alt="Foto profil" hidden></div>
+        <div class="floating-card card-top"><span class="floating-icon">✳</span><div><strong>Berani bertumbuh</strong><small>Setiap proses berarti</small></div></div>
+        <div class="floating-card card-bottom"><div class="mini-avatars"><span>01</span><span>02</span><span>03</span></div><div><strong id="activityCount">00+ Kegiatan</strong><small>Jejak yang terdokumentasi</small></div></div>
+        <div class="visual-caption">CATATAN PERJALANAN <span>— 01 / ∞</span></div>
+      </div>
+      <a href="#ringkasan" class="scroll-cue"><span></span> GULIR UNTUK MENJELAJAH</a>
+    </section>
+
+    <section class="stats-band" id="ringkasan"><div class="stats-inner"><div><strong id="statActivities">00</strong><span>Kegiatan</span></div><div><strong id="statExperience">00</strong><span>Pengalaman</span></div><div><strong id="statOrganizations">00</strong><span>Peran organisasi</span></div><div><strong id="statGallery">00</strong><span>Dokumentasi</span></div></div></section>
+
+    <section class="content-section section-wrap" id="kegiatan">
+      <div class="section-heading"><div><p class="section-eyebrow">01 — AKTIVITAS</p><h2>Hal yang <span>pernah saya lakukan.</span></h2></div><p class="section-intro">Kumpulan kegiatan yang menjadi ruang belajar, bertemu orang baru, dan mencoba hal-hal bermakna.</p></div>
+      <div class="activity-grid" id="activitiesGrid"><div class="empty-state">Memuat kegiatan…</div></div>
+    </section>
+
+    <section class="content-section soft-section" id="pengalaman"><div class="section-wrap"><div class="section-heading"><div><p class="section-eyebrow">02 — PENGALAMAN</p><h2>Belajar lewat <span>pengalaman.</span></h2></div><p class="section-intro">Setiap tanggung jawab memberi pelajaran baru tentang kerja sama, komunikasi, dan konsistensi.</p></div><div class="timeline" id="experienceList"></div></div></section>
+
+    <section class="content-section section-wrap" id="pendidikan"><div class="section-heading"><div><p class="section-eyebrow">03 — PENDIDIKAN</p><h2>Tempat saya <span>bertumbuh.</span></h2></div><p class="section-intro">Pendidikan bukan hanya tentang ruang kelas, tetapi juga tentang rasa ingin tahu dan proses memahami dunia.</p></div><div class="education-grid" id="educationList"></div></section>
+
+    <section class="content-section organization-section" id="organisasi"><div class="section-wrap"><div class="section-heading"><div><p class="section-eyebrow">04 — ORGANISASI & PERAN</p><h2>Bertumbuh <span>bersama.</span></h2></div><p class="section-intro">Ruang kolaborasi yang mengajarkan arti kontribusi, tanggung jawab, dan keberpihakan pada hal yang lebih besar.</p></div><div class="organization-grid" id="organizationList"></div></div></section>
+
+    <section class="content-section section-wrap" id="galeri"><div class="section-heading"><div><p class="section-eyebrow">05 — GALERI KEGIATAN</p><h2>Momen yang <span>layak diingat.</span></h2></div><p class="section-intro">Potongan cerita dalam bentuk visual dari kegiatan, pertemuan, dan perjalanan yang pernah dilalui.</p></div><div class="gallery-grid" id="galleryGrid"></div></section>
+
+    <section class="contact-section" id="kontak"><div class="section-wrap contact-inner"><div><p class="section-eyebrow">KITA BISA TERHUBUNG</p><h2>Punya cerita atau<br><span>proyek untuk dibahas?</span></h2><p class="contact-copy">Saya terbuka untuk bertukar gagasan, berkolaborasi, dan belajar bersama.</p></div><div class="contact-actions"><a id="emailLink" href="mailto:emailkamu@example.com" class="contact-link">✉ <span id="emailText">emailkamu@example.com</span> <b>↗</b></a><a id="whatsappLink" href="#" class="contact-link">◉ <span>Hubungi melalui WhatsApp</span><b>↗</b></a><a id="instagramLink" href="https://instagram.com/" target="_blank" rel="noreferrer" class="contact-link">◎ <span>Instagram</span><b>↗</b></a></div></div></section>
+  </main>
+  <footer class="site-footer"><a class="brand footer-brand" href="#beranda"><span class="brand-mark">P<span>.</span></span><span class="brand-copy">PORTOFOLIO<span>PERSONAL JOURNEY</span></span></a><p>Dibuat dengan niat baik, dirawat dengan konsistensi.</p><a href="#beranda" class="back-top">Kembali ke atas ↑</a><small>© <span id="yearNow"></span> <span id="footerName">Nama Kamu</span></small><button id="openAdminPanel" class="footer-admin-link" type="button">kelola portofolio</button></footer>
+  <div id="adminOverlay" class="admin-overlay" hidden role="dialog" aria-modal="true" aria-label="Kelola portofolio"><div class="admin-overlay-head"><span>Pengelola portofolio</span><button id="closeAdminPanel" type="button" aria-label="Tutup panel admin">Tutup ✕</button></div><iframe id="adminFrame" title="Panel admin portofolio" loading="lazy" data-src="/admin.html"></iframe></div>
+  <style>
+    .footer-admin-link{display:block;width:100%;border:0;background:transparent;color:#9aa3b5;text-align:center;font:inherit;font-size:10px;cursor:pointer;padding:6px 0 0;text-decoration:underline;text-decoration-color:#e1e5ed;text-underline-offset:3px;order:8}
+    .footer-admin-link:hover{color:#4268f5}
+    .admin-overlay[hidden]{display:none!important}.admin-overlay{position:fixed;z-index:1000;inset:0;background:rgba(8,16,36,.7);backdrop-filter:blur(5px);padding:16px;display:flex;flex-direction:column}.admin-overlay-head{height:46px;flex:0 0 46px;display:flex;justify-content:space-between;align-items:center;padding:0 16px;background:#fff;border-radius:14px 14px 0 0;color:#101b3d;font-size:12px;font-weight:800}.admin-overlay-head button{border:1px solid #e5e9f2;background:#fff;border-radius:8px;padding:7px 11px;color:#5b6680;font-size:11px;font-weight:700;cursor:pointer}.admin-overlay iframe{flex:1;width:100%;border:0;background:#f4f6fb;border-radius:0 0 14px 14px;min-height:0}
+    @media(max-width:560px){.admin-overlay{padding:5px}.admin-overlay-head{border-radius:10px 10px 0 0}.admin-overlay iframe{border-radius:0 0 10px 10px}}
+  </style>
+  <script>
+    (()=>{const open=document.getElementById('openAdminPanel'),close=document.getElementById('closeAdminPanel'),overlay=document.getElementById('adminOverlay'),frame=document.getElementById('adminFrame');function show(){if(!frame.dataset.loaded){frame.src=frame.dataset.src;frame.dataset.loaded='true';}overlay.hidden=false;document.body.style.overflow='hidden';}function hide(){overlay.hidden=true;document.body.style.overflow='';}open?.addEventListener('click',show);close?.addEventListener('click',hide);overlay?.addEventListener('click',e=>{if(e.target===overlay)hide()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!overlay.hidden)hide()});window.addEventListener('message',e=>{if(e.origin===location.origin&&e.data?.type==='portfolio-updated'){window.dispatchEvent(new Event('portfolio-data-updated'));}});})();
+  </script>
+  <div class="lightbox" id="lightbox" hidden role="dialog" aria-label="Pratinjau foto"><button id="lightboxClose" aria-label="Tutup foto">×</button><img id="lightboxImage" alt="Pratinjau dokumentasi"><p id="lightboxCaption"></p></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
